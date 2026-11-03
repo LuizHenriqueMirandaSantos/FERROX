@@ -1,0 +1,924 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>FERROX Serralheria</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: cabeçalho simples, hero em duas colunas (texto + desenho técnico de gôndola), lista editorial de produtos em linhas, faixa escura sobre solda, processo em 4 passos, formulário que monta a mensagem de orçamento. */
+:root {
+  --bg: #E8EBED;
+  --surface: #F6F8F9;
+  --ink: #12171B;
+  --ink-soft: #4A555D;
+  --line: #C2CAD0;
+  --accent: #2447C9;
+  --accent-ink: #FFFFFF;
+  --f-display: 'Archivo', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --f-body: 'IBM Plex Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1215;
+    --surface: #161C20;
+    --ink: #E6EAED;
+    --ink-soft: #9AA6AE;
+    --line: #2A343A;
+    --accent: #8CA6FF;
+    --accent-ink: #0E1215;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1215;
+  --surface: #161C20;
+  --ink: #E6EAED;
+  --ink-soft: #9AA6AE;
+  --line: #2A343A;
+  --accent: #8CA6FF;
+  --accent-ink: #0E1215;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.section { padding-block: clamp(56px, 9vw, 112px); }
+
+.mono {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.display {
+  font-family: var(--f-display);
+  font-stretch: 76%;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -.005em;
+  text-wrap: balance;
+}
+h2.display { font-size: clamp(2.2rem, 5.2vw, 3.9rem); }
+
+/* botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--f-body); font-weight: 600; font-size: 15px;
+  padding: 14px 22px; border-radius: 2px; text-decoration: none; cursor: pointer;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink);
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.12); background: var(--accent); color: var(--accent-ink); }
+
+/* cabeçalho */
+.top { padding-block: 18px; border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.brand b { font-family: var(--f-display); font-stretch: 76%; font-weight: 800; font-size: 28px; letter-spacing: .06em; }
+.brand span { font-family: var(--f-mono); font-size: 10px; letter-spacing: .32em; color: var(--ink-soft); margin-top: 5px; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a:not(.btn) { text-decoration: none; font-size: 14px; color: var(--ink-soft); }
+.nav a:not(.btn):hover { color: var(--ink); }
+.nav .btn { padding: 10px 16px; font-size: 14px; }
+@media (max-width: 760px) { .nav a:not(.btn) { display: none; } }
+
+/* hero */
+.hero { padding-top: clamp(40px, 7vw, 88px); padding-bottom: clamp(40px, 6vw, 72px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: clamp(2.9rem, 8vw, 6.4rem); }
+.hero .lead { margin-top: 26px; max-width: 52ch; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: var(--ink-soft); }
+.hero .cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+.specs { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--line); }
+.specs li { list-style: none; padding: 12px 18px 12px 0; margin-right: 18px; color: var(--ink-soft); border-right: 1px solid var(--line); }
+.specs li:last-child { border-right: 0; }
+.specs { padding: 0; margin-bottom: 0; }
+.plate { background: var(--surface); border: 1px solid var(--line); padding: 14px 14px 12px; }
+.plate svg { display: block; width: 100%; height: auto; }
+.plate figcaption { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; color: var(--ink-soft); font-size: 11px; }
+.plate { margin: 0; }
+.viewport { overflow: hidden; }
+.track { display: flex; transition: transform .55s cubic-bezier(.2, .7, .2, 1); }
+.slide { flex: 0 0 100%; min-width: 0; }
+.slide svg { display: block; width: 100%; height: auto; }
+.ctrl { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.arrows { display: flex; gap: 8px; }
+.cbtn {
+  font: 500 12px var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  min-width: 40px; height: 40px; padding: 0 12px;
+  border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 2px; cursor: pointer;
+}
+.cbtn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.dots { display: flex; gap: 2px; }
+.dot-b { width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; padding: 0; position: relative; }
+.dot-b::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 3px; background: var(--line); transition: background .2s; }
+.dot-b:hover::before { background: var(--ink-soft); }
+.dot-b[aria-current="true"]::before { background: var(--accent); }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* desenho técnico */
+.dl { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.dl-thin { fill: none; stroke: var(--ink-soft); stroke-width: 1; }
+.dim { fill: none; stroke: var(--accent); stroke-width: 1.2; }
+.dim-t { fill: var(--accent); font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; }
+.cal-t { fill: var(--ink-soft); font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .08em; }
+.grid-l { stroke: var(--line); stroke-width: 1; }
+
+.hero { border-bottom: 1px solid var(--line); }
+
+/* produtos */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: end; margin-bottom: 36px; }
+.head p { color: var(--ink-soft); max-width: 48ch; }
+.eyebrow { color: var(--accent); margin-bottom: 14px; display: block; }
+@media (max-width: 760px) { .head { grid-template-columns: minmax(0, 1fr); } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.chip {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 9px 14px; border: 1px solid var(--line); background: transparent; color: var(--ink-soft);
+  border-radius: 2px; cursor: pointer;
+}
+.chip:hover { border-color: var(--ink); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+.list { border-bottom: 1px solid var(--line); }
+.item {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  gap: 12px 32px; align-items: center;
+  padding: 22px 8px; border-top: 1px solid var(--line);
+  transition: background .15s;
+}
+.item:hover { background: var(--surface); }
+.art { display: block; width: 200px; max-width: 100%; height: auto; border: 1px solid var(--line); background: var(--surface); }
+.ttl { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.item .tag { color: var(--ink-soft); }
+.item h3 { font-family: var(--f-display); font-stretch: 80%; font-weight: 700; font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.05; text-wrap: balance; }
+.item p { color: var(--ink-soft); }
+.item .go { font-weight: 600; font-size: 14px; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.item .go:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 900px) {
+  .item { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 22px 4px; }
+  .art { width: 100%; max-width: 280px; }
+}
+
+/* cotas e marcadores dos desenhos */
+.arw { fill: var(--accent); }
+.dimm { fill: none; stroke: var(--accent); stroke-width: 1.2; marker-start: url(#ar); marker-end: url(#ar); }
+.dash { stroke-dasharray: 3 3; }
+.dot { fill: var(--ink-soft); }
+
+/* materiais */
+.mat { border-top: 2px solid var(--ink); }
+.mat-row {
+  display: grid; grid-template-columns: minmax(0, 190px) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.mat-row b { font-family: var(--f-display); font-stretch: 80%; font-weight: 800; font-size: 1.5rem; text-transform: uppercase; line-height: 1.1; }
+.mat-row span { color: var(--ink-soft); }
+.mat-row .use { color: var(--ink); }
+@media (max-width: 760px) { .mat-row { grid-template-columns: minmax(0, 1fr); } }
+.note { margin-top: 22px; color: var(--ink-soft); max-width: 60ch; }
+
+/* processo */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.step { padding: 24px 24px 8px 0; margin-right: 24px; border-right: 1px solid var(--line); }
+.step:last-child { border-right: 0; margin-right: 0; }
+.step .n { font-family: var(--f-display); font-stretch: 70%; font-weight: 800; font-size: 3.6rem; line-height: 1; color: var(--accent); }
+.step h3 { font-family: var(--f-display); font-stretch: 80%; font-weight: 700; font-size: 1.35rem; margin: 14px 0 8px; text-transform: uppercase; line-height: 1.1; }
+.step p { color: var(--ink-soft); font-size: 15px; }
+@media (max-width: 960px) {
+  .steps { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .step { border-right: 0; margin-right: 0; padding-bottom: 28px; }
+}
+@media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* orçamento */
+.quote { background: var(--surface); border-block: 1px solid var(--line); }
+.quote .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.quote .side p { margin-top: 20px; color: var(--ink-soft); max-width: 40ch; }
+.quote .side ul { margin: 28px 0 0; padding: 0; }
+.quote .side li { list-style: none; padding: 12px 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 15px; }
+.quote .side li:last-child { border-bottom: 1px solid var(--line); }
+@media (max-width: 860px) { .quote .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.f { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.f.full { grid-column: 1 / -1; }
+.f label { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.f input, .f select, .f textarea {
+  font: inherit; font-size: 16px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 2px; padding: 12px 13px; width: 100%;
+}
+.f textarea { min-height: 110px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+form .btn { justify-self: start; }
+@media (max-width: 560px) { form { grid-template-columns: minmax(0, 1fr); } }
+
+.out { grid-column: 1 / -1; border: 1px solid var(--accent); padding: 18px; display: flex; flex-direction: column; gap: 12px; background: var(--bg); }
+.out textarea { min-height: 180px; font-family: var(--f-mono); font-size: 13.5px; line-height: 1.55; }
+.out .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.out .st { color: var(--ink-soft); font-size: 14px; }
+
+/* rodapé */
+.foot { padding-block: 56px 40px; }
+.foot .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.foot h4 { margin: 0 0 12px; font-weight: 400; color: var(--ink-soft); }
+.foot p, .foot a { font-size: 15px; display: block; }
+.foot .sel { user-select: all; }
+.foot .small { grid-column: 1 / -1; color: var(--ink-soft); font-size: 13px; padding-top: 24px; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .foot .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="FERROX Serralheria, início">
+      <b>FERROX</b>
+      <span>SERRALHERIA</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#produtos">O que fazemos</a>
+      <a href="#materiais">Materiais</a>
+      <a href="#processo">Como trabalhamos</a>
+      <a class="btn primary" href="#orcamento">Pedir orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="gp" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" class="grid-l"/></pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="arw"/></marker>
+  </defs>
+</svg>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="mono eyebrow">Serralheria e fabricação sob medida</span>
+        <h1 class="display">Se é de metal, a gente fabrica.</h1>
+        <p class="lead">Portões, escadas, estruturas, bancadas, gôndolas e o que mais você imaginar. Em aço carbono e inox, feito nas suas medidas, do corte à entrega.</p>
+        <div class="cta">
+          <a class="btn primary" href="#orcamento">Pedir orçamento</a>
+          <a class="btn" href="#produtos">Ver o que fazemos</a>
+        </div>
+        <ul class="specs mono">
+          <li>Inox 304</li>
+          <li>Aço carbono</li>
+          <li>Solda TIG e MIG</li>
+          <li>Qualquer medida</li>
+        </ul>
+      </div>
+
+      <figure class="plate carousel" aria-roledescription="carrossel" aria-label="Desenhos técnicos de peças da FERROX">
+        <div class="viewport" id="viewport">
+          <div class="track" id="track">
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="1 de 6" data-name="Portão de duas folhas" data-info="Vista frontal · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-label="Desenho técnico de um portão de duas folhas com lanças, 3.000 por 2.000 milímetros">
+              <rect width="480" height="410" fill="url(#gp)"/>
+              <text x="60" y="52" class="cal-t">METALON 40 × 40 · PINTURA ESMALTE</text>
+              <rect x="60" y="90" width="360" height="12" class="dl"/>
+              <rect x="60" y="308" width="360" height="12" class="dl"/>
+              <rect x="60" y="102" width="12" height="206" class="dl"/>
+              <rect x="408" y="102" width="12" height="206" class="dl"/>
+              <rect x="72" y="196" width="336" height="10" class="dl"/>
+              <path d="M103 102 V308 M133 102 V308 M164 102 V308 M194 102 V308 M225 102 V308 M255 102 V308 M286 102 V308 M316 102 V308 M347 102 V308 M378 102 V308" class="dl"/>
+              <path d="M97 90 L103 72 L109 90 M127 90 L133 72 L139 90 M158 90 L164 72 L170 90 M188 90 L194 72 L200 90 M219 90 L225 72 L231 90 M249 90 L255 72 L261 90 M280 90 L286 72 L292 90 M310 90 L316 72 L322 90 M341 90 L347 72 L353 90 M372 90 L378 72 L384 90" class="dl"/>
+              <circle cx="66" cy="130" r="4" class="dot"/><circle cx="66" cy="280" r="4" class="dot"/>
+              <circle cx="414" cy="130" r="4" class="dot"/><circle cx="414" cy="280" r="4" class="dot"/>
+              <path d="M240 90 V308" class="dl-thin dash"/>
+              <path d="M60 326 V368 M420 326 V368" class="dim"/>
+              <path d="M60 362 H420" class="dimm"/>
+              <text x="240" y="384" text-anchor="middle" class="dim-t">3.000 mm</text>
+              <path d="M424 72 H450 M424 320 H450" class="dim"/>
+              <path d="M444 72 V320" class="dimm"/>
+              <text transform="translate(466 196) rotate(90)" text-anchor="middle" class="dim-t">2.000 mm</text>
+            </svg>
+          </div>
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="2 de 6" data-name="Escada com guarda-corpo" data-info="Vista lateral · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-label="Desenho técnico de uma escada reta com guarda-corpo, 3.000 milímetros de comprimento e 2.600 de altura">
+              <rect width="480" height="410" fill="url(#gp)"/>
+              <text x="40" y="56" class="cal-t">GUARDA-CORPO INOX 304</text>
+              <text x="40" y="70" class="cal-t">DEGRAUS EM CHAPA XADREZ</text>
+              <path d="M40 350 H440" class="dl-thin"/>
+              <path d="M80 350 V320 H120 V290 H160 V260 H200 V230 H240 V200 H280 V170 H320 V140 H400" class="dl"/>
+              <path d="M80 350 L320 170 V188 L104 350 Z" class="dl"/>
+              <rect x="98" y="240" width="4" height="80" class="dl"/>
+              <rect x="178" y="180" width="4" height="80" class="dl"/>
+              <rect x="258" y="120" width="4" height="80" class="dl"/>
+              <rect x="338" y="60" width="4" height="80" class="dl"/>
+              <rect x="398" y="60" width="4" height="80" class="dl"/>
+              <path d="M100 240 L340 60 H400" class="dl"/>
+              <path d="M140 290 V210 M220 230 V150 M300 170 V90 M370 140 V60" class="dl-thin"/>
+              <path d="M80 354 V392 M320 194 V392" class="dim"/>
+              <path d="M80 386 H320" class="dimm"/>
+              <text x="200" y="403" text-anchor="middle" class="dim-t">3.000 mm</text>
+              <path d="M404 140 H448 M400 350 H448" class="dim"/>
+              <path d="M442 140 V350" class="dimm"/>
+              <text transform="translate(464 245) rotate(90)" text-anchor="middle" class="dim-t">2.600 mm</text>
+            </svg>
+          </div>
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="3 de 6" data-name="Gôndola de padaria" data-info="Vista frontal · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-labelledby="dt dd">
+          <title id="dt">Desenho técnico de uma gôndola de padaria</title>
+          <desc id="dd">Vista frontal de uma gôndola de inox com quatro prateleiras, pães expostos e cotas de 1.200 por 1.600 milímetros.</desc>
+          <defs>
+            <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M20 0H0V20" fill="none" class="grid-l"/>
+            </pattern>
+            <g id="loaf">
+              <ellipse cx="0" cy="0" rx="20" ry="11" class="dl"/>
+              <path d="M-9 -7 L-3 6 M0 -9 L6 8 M9 -7 L14 4" class="dl-thin"/>
+            </g>
+          </defs>
+          <rect width="480" height="410" fill="url(#g)"/>
+
+          <!-- cabeçalho, estrutura e rodapé -->
+          <rect x="130" y="40" width="220" height="10" class="dl"/>
+          <rect x="130" y="50" width="220" height="270" class="dl"/>
+          <rect x="124" y="320" width="232" height="20" class="dl"/>
+
+          <!-- prateleiras -->
+          <rect x="140" y="110" width="200" height="7" class="dl"/>
+          <rect x="140" y="170" width="200" height="7" class="dl"/>
+          <rect x="140" y="230" width="200" height="7" class="dl"/>
+          <rect x="140" y="290" width="200" height="7" class="dl"/>
+
+          <!-- pães -->
+          <use href="#loaf" x="165" y="99"/><use href="#loaf" x="215" y="99"/><use href="#loaf" x="265" y="99"/><use href="#loaf" x="315" y="99"/>
+          <use href="#loaf" x="190" y="159"/><use href="#loaf" x="240" y="159"/><use href="#loaf" x="290" y="159"/>
+          <use href="#loaf" x="165" y="219"/><use href="#loaf" x="215" y="219"/><use href="#loaf" x="290" y="219"/><use href="#loaf" x="320" y="219"/>
+          <use href="#loaf" x="190" y="279"/><use href="#loaf" x="265" y="279"/>
+
+          <!-- cota de largura -->
+          <path d="M130 345 V372 M350 345 V372 M130 366 H350" class="dim"/>
+          <path d="M130 366 l7 -4 v8 z M350 366 l-7 -4 v8 z" fill="var(--accent)"/>
+          <text x="240" y="391" text-anchor="middle" class="dim-t">1.200 mm</text>
+
+          <!-- cota de altura -->
+          <path d="M356 40 H410 M356 340 H410 M404 40 V340" class="dim"/>
+          <path d="M404 40 l-4 7 h8 z M404 340 l-4 -7 h8 z" fill="var(--accent)"/>
+          <text x="0" y="0" class="dim-t" text-anchor="middle" transform="translate(424 190) rotate(90)">1.600 mm</text>
+
+          <!-- chamada de material -->
+          <path d="M130 200 H100" class="dl-thin"/>
+          <circle cx="130" cy="200" r="2.5" fill="var(--ink-soft)"/>
+          <text x="96" y="196" text-anchor="end" class="cal-t">INOX 304</text>
+          <text x="96" y="210" text-anchor="end" class="cal-t">CHAPA 1,2</text>
+        </svg>
+          </div>
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="4 de 6" data-name="Bancada com cuba e prateleira" data-info="Vista frontal · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-label="Desenho técnico de uma bancada de inox com cuba, prateleira inferior e rodízios, 1.800 por 900 milímetros">
+              <rect width="480" height="410" fill="url(#gp)"/>
+              <rect x="70" y="84" width="340" height="8" class="dl"/>
+              <rect x="70" y="92" width="340" height="18" class="dl"/>
+              <rect x="106" y="110" width="268" height="10" class="dl-thin"/>
+              <rect x="92" y="110" width="14" height="190" class="dl"/>
+              <rect x="374" y="110" width="14" height="190" class="dl"/>
+              <rect x="106" y="224" width="268" height="8" class="dl"/>
+              <path d="M170 110 V172 H300 V110" class="dl-thin dash"/>
+              <circle cx="99" cy="312" r="12" class="dl"/><circle cx="381" cy="312" r="12" class="dl"/>
+              <circle cx="99" cy="312" r="3" class="dot"/><circle cx="381" cy="312" r="3" class="dot"/>
+              <path d="M70 80 V48 M410 80 V48" class="dim"/>
+              <path d="M70 54 H410" class="dimm"/>
+              <text x="240" y="42" text-anchor="middle" class="dim-t">1.800 mm</text>
+              <path d="M414 92 H448 M394 324 H448" class="dim"/>
+              <path d="M442 92 V324" class="dimm"/>
+              <text transform="translate(462 208) rotate(90)" text-anchor="middle" class="dim-t">900 mm</text>
+              <path d="M92 262 H62" class="dl-thin"/><circle cx="92" cy="262" r="2.5" class="dot"/>
+              <text x="58" y="258" text-anchor="end" class="cal-t">INOX 304</text>
+              <text x="58" y="272" text-anchor="end" class="cal-t">TUBO 40</text>
+            </svg>
+          </div>
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="5 de 6" data-name="Suporte em L com reforço soldado" data-info="Vista frontal · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-label="Desenho técnico de um suporte em L de aço carbono com reforço soldado, 500 por 450 milímetros">
+              <rect width="480" height="410" fill="url(#gp)"/>
+              <path d="M120 60 H150 V250 H370 V282 H120 Z" class="dl"/>
+              <path d="M150 140 V250 H250 Z" class="dl"/>
+              <circle cx="135" cy="95" r="8" class="dl-thin"/><circle cx="135" cy="200" r="8" class="dl-thin"/>
+              <circle cx="205" cy="266" r="8" class="dl-thin"/><circle cx="325" cy="266" r="8" class="dl-thin"/>
+              <path d="M200 195 L262 150 H372" class="dl-thin"/><circle cx="200" cy="195" r="3" class="dot"/>
+              <text x="264" y="144" class="cal-t">SOLDA TIG</text>
+              <text x="264" y="166" class="cal-t">CORDÃO CONTÍNUO</text>
+              <path d="M120 286 V340 M370 286 V340" class="dim"/>
+              <path d="M120 332 H370" class="dimm"/>
+              <text x="245" y="356" text-anchor="middle" class="dim-t">500 mm</text>
+              <path d="M116 60 H70 M116 282 H70" class="dim"/>
+              <path d="M78 60 V282" class="dimm"/>
+              <text transform="translate(62 171) rotate(-90)" text-anchor="middle" class="dim-t">450 mm</text>
+            </svg>
+          </div>
+          <div class="slide" role="group" aria-roledescription="desenho" aria-label="6 de 6" data-name="Forma de bolo redonda" data-info="Vista frontal e planta · exemplo">
+            <svg viewBox="0 0 480 410" role="img" aria-label="Desenho técnico de uma forma de bolo redonda de inox, 250 por 80 milímetros, com vista de planta">
+              <rect width="480" height="410" fill="url(#gp)"/>
+              <ellipse cx="240" cy="130" rx="110" ry="22" class="dl"/>
+              <ellipse cx="240" cy="130" rx="100" ry="19" class="dl-thin"/>
+              <path d="M130 130 V250 A110 22 0 0 0 350 250 V130" class="dl"/>
+              <path d="M130 250 A110 22 0 0 1 350 250" class="dl-thin dash"/>
+              <path d="M130 262 V320 M350 262 V320" class="dim"/>
+              <path d="M130 312 H350" class="dimm"/>
+              <text x="240" y="340" text-anchor="middle" class="dim-t">Ø 250 mm</text>
+              <path d="M352 130 H410 M352 250 H410" class="dim"/>
+              <path d="M402 130 V250" class="dimm"/>
+              <text transform="translate(424 190) rotate(90)" text-anchor="middle" class="dim-t">80 mm</text>
+              <path d="M130 190 H98" class="dl-thin"/><circle cx="130" cy="190" r="2.5" class="dot"/>
+              <text x="94" y="186" text-anchor="end" class="cal-t">INOX 304</text>
+              <text x="94" y="200" text-anchor="end" class="cal-t">CHAPA 0,8</text>
+              <circle cx="424" cy="345" r="38" class="dl"/><circle cx="424" cy="345" r="32" class="dl-thin"/>
+              <path d="M424 297 V393 M376 345 H472" class="dl-thin dash"/>
+              <text x="424" y="290" text-anchor="middle" class="cal-t">PLANTA</text>
+            </svg>
+          </div>
+          </div>
+        </div>
+        <figcaption class="mono"><span id="cap-name">Portão de duas folhas</span><span id="cap-count">01 / 06</span></figcaption>
+        <div class="ctrl">
+          <div class="arrows">
+            <button class="cbtn" type="button" id="prev" aria-label="Desenho anterior">←</button>
+            <button class="cbtn" type="button" id="next" aria-label="Próximo desenho">→</button>
+          </div>
+          <div class="dots" id="dots" role="group" aria-label="Escolher desenho"></div>
+          <button class="cbtn" type="button" id="pp" aria-pressed="false">Pausar</button>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="produtos">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="mono eyebrow">O que fazemos</span>
+          <h2 class="display">Fabricamos o que a sua obra ou o seu negócio precisa.</h2>
+        </div>
+        <p>Para casa, comércio e indústria. Da peça única ao lote repetido. Se não está na lista, mande a ideia, uma foto ou o desenho.</p>
+      </div>
+
+      <div class="chips" role="group" aria-label="Filtrar por material">
+        <button class="chip" type="button" data-f="todos" aria-pressed="true">Todos</button>
+        <button class="chip" type="button" data-f="inox" aria-pressed="false">Inox</button>
+        <button class="chip" type="button" data-f="carbono" aria-pressed="false">Aço carbono</button>
+      </div>
+
+      <div class="list" id="lista">
+
+        <article class="item" data-mat="carbono inox">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de um portão de duas folhas com lanças, 3.000 por 2.000 milímetros">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <rect x="40" y="30" width="120" height="6" class="dl"/>
+            <rect x="40" y="108" width="120" height="6" class="dl"/>
+            <rect x="40" y="36" width="6" height="72" class="dl"/>
+            <rect x="154" y="36" width="6" height="72" class="dl"/>
+            <rect x="46" y="68" width="108" height="4" class="dl"/>
+            <path d="M58 36 V108 M70 36 V108 M82 36 V108 M94 36 V108 M106 36 V108 M118 36 V108 M130 36 V108 M142 36 V108" class="dl"/>
+            <path d="M55 30 L58 22 L61 30 M67 30 L70 22 L73 30 M79 30 L82 22 L85 30 M91 30 L94 22 L97 30 M103 30 L106 22 L109 30 M115 30 L118 22 L121 30 M127 30 L130 22 L133 30 M139 30 L142 22 L145 30" class="dl-thin"/>
+            <path d="M40 118 V138 M160 118 V138" class="dim"/>
+            <path d="M40 132 H160" class="dimm"/>
+            <text x="100" y="147" text-anchor="middle" class="dim-t">3.000 mm</text>
+            <path d="M164 22 H184 M164 114 H184" class="dim"/>
+            <path d="M178 22 V114" class="dimm"/>
+            <text transform="translate(193 68) rotate(90)" text-anchor="middle" class="dim-t">2.000 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Aço carbono · Inox</span><h3>Portões, grades e cercas</h3></div>
+          <p>Portões de correr e de abrir, grades de janela, cercas e fechamentos, no tamanho do vão e com a pintura que você escolher.</p>
+          <a class="go" href="#orcamento" data-prod="Portão, grade ou cerca">Orçar →</a>
+        </article>
+
+        <article class="item" data-mat="inox carbono">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de uma escada com guarda-corpo, 2.600 milímetros de altura">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <path d="M12 128 H190" class="dl-thin"/>
+            <path d="M40 128 V116 H56 V104 H72 V92 H88 V80 H104 V68 H120 V56 H136 V44 H160" class="dl"/>
+            <path d="M40 128 L136 56" class="dl-thin"/>
+            <path d="M48 116 V90 M80 92 V66 M112 68 V42 M144 44 V18 M156 44 V18" class="dl"/>
+            <path d="M48 90 L144 18 H160" class="dl"/>
+            <path d="M64 104 V78 M96 80 V54 M128 56 V30" class="dl-thin"/>
+            <path d="M162 44 H182 M162 128 H182" class="dim"/>
+            <path d="M176 44 V128" class="dimm"/>
+            <text transform="translate(192 86) rotate(90)" text-anchor="middle" class="dim-t">2.600 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Inox · Aço carbono</span><h3>Escadas, corrimãos e guarda-corpos</h3></div>
+          <p>Escadas retas e em L, corrimãos e guarda-corpos, com degraus antiderrapantes e acabamento para uso interno ou externo.</p>
+          <a class="go" href="#orcamento" data-prod="Escada, corrimão ou guarda-corpo">Orçar →</a>
+        </article>
+
+        <article class="item" data-mat="carbono">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de um suporte em L de aço com reforço soldado, 500 por 400 milímetros">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <path d="M60 25 H72 V93 H160 V105 H60 Z" class="dl"/>
+            <path d="M72 55 V93 H110 Z" class="dl-thin"/>
+            <circle cx="66" cy="40" r="3" class="dl-thin"/><circle cx="66" cy="70" r="3" class="dl-thin"/><circle cx="135" cy="99" r="3" class="dl-thin"/>
+            <path d="M91 74 L118 50 H170" class="dl-thin"/><circle cx="91" cy="74" r="2" class="dot"/>
+            <text x="120" y="45" class="cal-t">SOLDA TIG</text>
+            <path d="M60 108 V128 M160 108 V128" class="dim"/>
+            <path d="M60 124 H160" class="dimm"/>
+            <text x="110" y="141" text-anchor="middle" class="dim-t">500 mm</text>
+            <path d="M58 25 H34 M58 105 H34" class="dim"/>
+            <path d="M40 25 V105" class="dimm"/>
+            <text transform="translate(30 65) rotate(-90)" text-anchor="middle" class="dim-t">400 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Aço carbono</span><h3>Estruturas, coberturas e suportes</h3></div>
+          <p>Estruturas metálicas leves, coberturas, suportes e reforços soldados, pensados para a carga que a peça vai receber.</p>
+          <a class="go" href="#orcamento" data-prod="Estrutura, cobertura ou suporte">Orçar →</a>
+        </article>
+
+        <article class="item" data-mat="inox">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de uma bancada de inox com prateleira, cuba e rodízios, 1.500 por 900 milímetros">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <rect x="28" y="44" width="128" height="8" class="dl"/>
+            <rect x="36" y="52" width="6" height="62" class="dl"/>
+            <rect x="142" y="52" width="6" height="62" class="dl"/>
+            <rect x="42" y="88" width="100" height="4" class="dl"/>
+            <path d="M70 52 V68 H114 V52" class="dl-thin dash"/>
+            <circle cx="39" cy="119" r="5" class="dl"/><circle cx="145" cy="119" r="5" class="dl"/>
+            <path d="M28 44 V26 M156 44 V26" class="dim"/>
+            <path d="M28 30 H156" class="dimm"/>
+            <text x="92" y="20" text-anchor="middle" class="dim-t">1.500 mm</text>
+            <path d="M158 44 H182 M150 124 H182" class="dim"/>
+            <path d="M176 44 V124" class="dimm"/>
+            <text transform="translate(191 84) rotate(90)" text-anchor="middle" class="dim-t">900 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Inox</span><h3>Bancadas, mesas e mobiliário</h3></div>
+          <p>Bancadas, mesas de trabalho, prateleiras e móveis, com cuba, borda elevada, rodízios e o acabamento que o uso pedir.</p>
+          <a class="go" href="#orcamento" data-prod="Bancada, mesa ou mobiliário">Orçar →</a>
+        </article>
+
+        <article class="item" data-mat="inox carbono">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de uma gôndola de padaria, 1.200 por 1.600 milímetros">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <rect x="50" y="20" width="100" height="6" class="dl"/>
+            <rect x="50" y="26" width="100" height="86" class="dl"/>
+            <rect x="44" y="112" width="112" height="8" class="dl"/>
+            <rect x="56" y="54" width="88" height="4" class="dl"/>
+            <rect x="56" y="82" width="88" height="4" class="dl"/>
+            <ellipse cx="72" cy="49" rx="10" ry="5" class="dl"/><ellipse cx="100" cy="49" rx="10" ry="5" class="dl"/><ellipse cx="128" cy="49" rx="10" ry="5" class="dl"/>
+            <ellipse cx="72" cy="77" rx="10" ry="5" class="dl"/><ellipse cx="100" cy="77" rx="10" ry="5" class="dl"/><ellipse cx="128" cy="77" rx="10" ry="5" class="dl"/>
+            <ellipse cx="82" cy="106" rx="10" ry="5" class="dl"/><ellipse cx="118" cy="106" rx="10" ry="5" class="dl"/>
+            <path d="M50 124 V140 M150 124 V140" class="dim"/>
+            <path d="M50 136 H150" class="dimm"/>
+            <text x="100" y="148" text-anchor="middle" class="dim-t">1.200 mm</text>
+            <path d="M154 20 H180 M158 120 H180" class="dim"/>
+            <path d="M174 20 V120" class="dimm"/>
+            <text transform="translate(190 70) rotate(90)" text-anchor="middle" class="dim-t">1.600 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Inox · Aço carbono</span><h3>Gôndolas, expositores e carrinhos</h3></div>
+          <p>Para padarias, mercados e lojas: gôndolas, vitrines, carrinhos e prateleiras no tamanho exato do espaço.</p>
+          <a class="go" href="#orcamento" data-prod="Gôndola, expositor ou carrinho">Orçar →</a>
+        </article>
+
+        <article class="item" data-mat="inox">
+          <svg class="art" viewBox="0 0 200 150" role="img" aria-label="Desenho técnico de uma forma de bolo redonda de inox, 250 por 80 milímetros">
+            <rect width="200" height="150" fill="url(#gp)"/>
+            <ellipse cx="100" cy="36" rx="48" ry="9" class="dl"/>
+            <path d="M52 36 V96 A48 9 0 0 0 148 96 V36" class="dl"/>
+            <path d="M52 96 A48 9 0 0 1 148 96" class="dl-thin dash"/>
+            <path d="M52 108 V126 M148 108 V126" class="dim"/>
+            <path d="M52 122 H148" class="dimm"/>
+            <text x="100" y="141" text-anchor="middle" class="dim-t">Ø 250 mm</text>
+            <path d="M150 36 H178 M150 96 H178" class="dim"/>
+            <path d="M172 36 V96" class="dimm"/>
+            <text transform="translate(190 66) rotate(90)" text-anchor="middle" class="dim-t">80 mm</text>
+          </svg>
+          <div class="ttl"><span class="tag mono">Inox</span><h3>Formas e utensílios sob medida</h3></div>
+          <p>Formas de bolo, assadeiras e utensílios em medidas que o mercado não vende, feitos para a sua receita.</p>
+          <a class="go" href="#orcamento" data-prod="Formas e utensílios">Orçar →</a>
+        </article>
+      </div>
+      <p class="note">Desenhos ilustrativos, com medidas de exemplo. Cada peça é feita nas medidas que você pedir, de qualquer item que precise de solda.</p>
+    </div>
+  </section>
+
+  <section class="section" id="materiais" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="mono eyebrow">Materiais</span>
+          <h2 class="display">Cada metal no lugar onde rende mais.</h2>
+        </div>
+        <p>Escolher o material certo evita ferrugem, retrabalho e gasto à toa. Dizemos qual faz sentido para a sua peça antes de fechar o orçamento.</p>
+      </div>
+      <div class="mat">
+        <div class="mat-row">
+          <b>Inox 304</b>
+          <span class="use">Corrimãos, bancadas, equipamentos e tudo que pega umidade ou encosta em alimento.</span>
+          <span>Aguenta umidade, lavagem frequente e produtos de limpeza do dia a dia.</span>
+        </div>
+        <div class="mat-row">
+          <b>Inox 430</b>
+          <span class="use">Estruturas e acabamentos longe de água e de alimento.</span>
+          <span>Custa menos, mas resiste menos à corrosão que o 304.</span>
+        </div>
+        <div class="mat-row">
+          <b>Aço carbono</b>
+          <span class="use">Portões, grades, escadas, estruturas e peças que levam pintura.</span>
+          <span>Forte e econômico. Recebe pintura ou tratamento contra ferrugem.</span>
+        </div>
+      </div>
+      <p class="note">Não sabe qual escolher? Conte onde a peça vai ficar e como vai ser usada. A gente indica.</p>
+    </div>
+  </section>
+
+  <section class="section" id="processo">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="mono eyebrow">Como trabalhamos</span>
+          <h2 class="display">Da conversa até a peça na sua porta.</h2>
+        </div>
+        <p>Quatro etapas, sempre na mesma ordem, para você saber o que esperar em cada uma.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Conversa e medidas</h3>
+          <p>Você conta o que precisa e passa as medidas. Foto do espaço ou rascunho ajudam muito.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Projeto e orçamento</h3>
+          <p>Definimos material, espessura e acabamento. Você recebe o valor e o prazo antes de começar.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Corte, dobra e solda</h3>
+          <p>A peça é feita na oficina, com conferência de medidas a cada etapa.</p>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <h3>Acabamento e entrega</h3>
+          <p>Limpeza das soldas, polimento ou pintura e combinação da entrega ou retirada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote section" id="orcamento">
+    <div class="wrap">
+      <div class="side">
+        <span class="mono eyebrow">Orçamento</span>
+        <h2 class="display">Conte o que você precisa.</h2>
+        <p>Preencha o que souber. Não precisa ter o projeto pronto. Ao enviar, abrimos o WhatsApp da FERROX com a mensagem pronta.</p>
+        <ul class="mono">
+          <li>Dica: informe largura, altura e profundidade</li>
+          <li>Foto do local ajuda a acertar de primeira</li>
+          <li>Sem compromisso até aprovar o valor</li>
+        </ul>
+      </div>
+
+      <form id="form" novalidate>
+        <div class="f">
+          <label for="nome">Seu nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar">
+        </div>
+        <div class="f">
+          <label for="zap">WhatsApp</label>
+          <input id="zap" name="zap" type="text" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+        </div>
+        <div class="f">
+          <label for="peca">O que você precisa</label>
+          <select id="peca" name="peca" required>
+            <option>Portão, grade ou cerca</option>
+            <option>Escada, corrimão ou guarda-corpo</option>
+            <option>Estrutura, cobertura ou suporte</option>
+            <option>Bancada, mesa ou mobiliário</option>
+            <option>Gôndola, expositor ou carrinho</option>
+            <option>Formas e utensílios</option>
+            <option>Reparo ou reforma de peça</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="mat">Material</label>
+          <select id="mat" name="mat">
+            <option>Ainda não sei</option>
+            <option>Inox 304</option>
+            <option>Inox 430</option>
+            <option>Aço carbono</option>
+          </select>
+        </div>
+        <div class="f full">
+          <label for="med">Medidas aproximadas</label>
+          <input id="med" name="med" type="text" placeholder="Ex.: 1.200 × 600 × 900 mm">
+        </div>
+        <div class="f full">
+          <label for="det">Detalhes</label>
+          <textarea id="det" name="det" placeholder="Quantidade, prazo, onde vai ficar, como vai ser usada"></textarea>
+        </div>
+        <div class="out" id="out">
+          <label class="mono" for="msg" style="font-size:11.5px;color:var(--ink-soft)">Prévia da mensagem</label>
+          <textarea id="msg" readonly></textarea>
+          <div class="row">
+            <a class="btn primary" id="wa" href="https://wa.me/" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+            <button class="btn" type="button" id="copiar">Copiar mensagem</button>
+            <span class="st" id="st" role="status"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#inicio" style="display:flex">
+        <b>FERROX</b>
+        <span>SERRALHERIA</span>
+      </a>
+      <p style="margin-top:16px;color:var(--ink-soft);max-width:34ch">Serralheria e fabricação sob medida em aço carbono e inox, para casa, comércio e indústria.</p>
+    </div>
+    <div>
+      <h4 class="mono">Contato</h4>
+      <p class="sel">(00) 00000-0000</p>
+      <p class="sel">contato@suaempresa.com.br</p>
+    </div>
+    <div>
+      <h4 class="mono">Atendimento</h4>
+      <p>Segunda a sexta, 8h às 18h</p>
+      <p>Sua cidade, UF</p>
+    </div>
+    <p class="small mono">© 2026 FERROX Serralheria</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Número do WhatsApp da FERROX, com país e DDD, só dígitos. Ex.: '5511999999999'
+  var WA_NUMBER = '';
+
+  // filtro de produtos
+  var chips = document.querySelectorAll('.chip');
+  var items = document.querySelectorAll('#lista .item');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.getAttribute('data-f');
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      items.forEach(function (it) {
+        var mats = it.getAttribute('data-mat').split(' ');
+        it.hidden = !(f === 'todos' || mats.indexOf(f) !== -1);
+      });
+    });
+  });
+
+  var form = document.getElementById('form');
+  var sel = document.getElementById('peca');
+  var msg = document.getElementById('msg');
+  var st = document.getElementById('st');
+  var wa = document.getElementById('wa');
+  var nome = document.getElementById('nome');
+
+  function build() {
+    var l = ['Olá! Quero pedir um orçamento.', ''];
+    if (nome.value.trim()) l.push('Nome: ' + nome.value.trim());
+    var zap = document.getElementById('zap').value.trim();
+    if (zap) l.push('WhatsApp: ' + zap);
+    l.push('Peça: ' + sel.value);
+    l.push('Material: ' + document.getElementById('mat').value);
+    var med = document.getElementById('med').value.trim();
+    if (med) l.push('Medidas: ' + med);
+    var det = document.getElementById('det').value.trim();
+    if (det) { l.push(''); l.push(det); }
+    return l.join('\n');
+  }
+
+  function update() {
+    var t = build();
+    msg.value = t;
+    wa.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(t);
+  }
+
+  form.addEventListener('input', update);
+  form.addEventListener('change', update);
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+
+  // "Orçar" pré-seleciona a peça no formulário
+  document.querySelectorAll('.go').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var v = a.getAttribute('data-prod');
+      if (v) { sel.value = v; update(); }
+    });
+  });
+
+  wa.addEventListener('click', function (e) {
+    if (!nome.value.trim()) {
+      e.preventDefault();
+      st.textContent = 'Preencha seu nome para enviar.';
+      nome.focus();
+      return;
+    }
+    st.textContent = 'Abrindo o WhatsApp em uma nova aba.';
+  });
+
+  document.getElementById('copiar').addEventListener('click', function () {
+    function fallback() {
+      msg.focus();
+      msg.select();
+      st.textContent = 'Texto selecionado. Use copiar do seu aparelho.';
+    }
+    try {
+      navigator.clipboard.writeText(msg.value).then(function () {
+        st.textContent = 'Mensagem copiada.';
+      }, fallback);
+    } catch (err) { fallback(); }
+  });
+
+  // carrossel de desenhos
+  (function () {
+    var track = document.getElementById('track');
+    var slides = Array.prototype.slice.call(track.children);
+    var dotsBox = document.getElementById('dots');
+    var capName = document.getElementById('cap-name');
+    var capCount = document.getElementById('cap-count');
+    var pp = document.getElementById('pp');
+    var viewport = document.getElementById('viewport');
+    var n = slides.length, idx = 0, timer = null;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var playing = !reduce;
+    var hover = false;
+
+    function pad(x) { return (x < 10 ? '0' : '') + x; }
+
+    var dots = slides.map(function (sl, k) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'dot-b';
+      b.setAttribute('aria-label', 'Ir para o desenho ' + (k + 1) + ': ' + sl.getAttribute('data-name'));
+      b.addEventListener('click', function () { go(k); restart(); });
+      dotsBox.appendChild(b);
+      return b;
+    });
+
+    function go(i) {
+      idx = (i + n) % n;
+      track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+      slides.forEach(function (sl, k) { sl.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
+      dots.forEach(function (d, k) { d.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
+      capName.textContent = slides[idx].getAttribute('data-name');
+      capCount.textContent = pad(idx + 1) + ' / ' + pad(n);
+    }
+
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (playing && !hover) timer = setInterval(function () { go(idx + 1); }, 5500);
+    }
+    function restart() { start(); }
+
+    document.getElementById('prev').addEventListener('click', function () { go(idx - 1); restart(); });
+    document.getElementById('next').addEventListener('click', function () { go(idx + 1); restart(); });
+
+    pp.addEventListener('click', function () {
+      playing = !playing;
+      pp.textContent = playing ? 'Pausar' : 'Reproduzir';
+      pp.setAttribute('aria-pressed', playing ? 'false' : 'true');
+      start();
+    });
+    if (!playing) { pp.textContent = 'Reproduzir'; pp.setAttribute('aria-pressed', 'true'); }
+
+    viewport.addEventListener('mouseenter', function () { hover = true; stop(); });
+    viewport.addEventListener('mouseleave', function () { hover = false; start(); });
+
+    // deslizar com o dedo
+    var x0 = null;
+    viewport.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) { go(idx + (dx < 0 ? 1 : -1)); restart(); }
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+
+    go(0);
+    start();
+  })();
+
+  update();
+})();
+</script>
+
+</body></html>
